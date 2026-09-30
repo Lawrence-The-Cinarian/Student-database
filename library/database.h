@@ -10,5 +10,7 @@ char phoneNumber[15];
 
 void print();
 int addANewStudent(Profile *replace);
+int displayAllStudents(Profile *replace);
+int saveAndExit(Profile *replace);
 
 #endif

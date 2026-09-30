@@ -24,22 +24,60 @@ int addANewStudent(Profile *replace)
  char sym = '\0';
  do
   {
+  (void)getchar();
   printf("Enter student name: ");
   fgets(replace->studentName, sizeof(replace->studentName), stdin);
   replace->studentName[strcspn(replace->studentName, "\n")] = '\0';
-  (void)getchar();
   printf("Enter student ID: ");
-  scanf("%14s", replace->studentID);
+  fgets(replace->studentID, sizeof(replace->studentID), stdin);
+  replace->studentID[strcspn(replace->studentID, "\n")] = '\0';
   printf("Enter student phone number: ");
-  scanf("%14s", replace->phoneNumber);
- puts("");
- printf("Would you like to continue? Y[es] or N[o]: ");
- scanf(" %c", &sym);
-if(!(sym == 'Y' || sym == 'y'))
-{
-break;
-}
+  fgets(replace->phoneNumber, sizeof(replace->phoneNumber), stdin);
+  replace->phoneNumber[strcspn(replace->phoneNumber, "\n")] = '\0';
+  puts("");
+  printf("Would you like to add another student? Y[es] or N[o]: ");
+  scanf(" %c", &sym);
+  if(!(sym == 'Y' || sym == 'y'))
+  {
+  break;
+  }
  }
-  while(true);
+ while(true);
+return 0;
+}
 
+/*----------------------------------------------------------------------------------------------------*/
+
+int displayAllStudents(Profile *replace)
+{
+ FILE *open_file = fopen("src/student_data.txt", "r");
+ if(open_file == NULL)
+ {
+  puts("Error reading file!");
+  return 1;
+ }
+
+ while(fscanf(open_file, "%39s %14s %14s", replace->studentName, replace->studentID, replace->phoneNumber) == 3)
+ {
+  printf("Name: %s\nStudent-ID: %s\nStudent phone number: %s\n\n", replace->studentName, replace->studentID, replace->phoneNumber);
+ }
+fclose(open_file);
+return 0;
+}
+
+/*----------------------------------------------------------------------------------------------------*/
+
+int saveAndExit(Profile *replace)
+{
+ FILE *save_file = fopen("src/student_data.txt", "a");
+ if(save_file == NULL)
+ {
+  puts("Error saving file");
+  return 1;
+ }
+
+ fprintf(save_file, "Name: %s\nStudent-ID: %s\nStudent phone number: %s\n\n", replace->studentName, replace->studentID, replace->phoneNumber);
+ fclose(save_file);
+ puts("Saved successfully");
+return 0;
 }

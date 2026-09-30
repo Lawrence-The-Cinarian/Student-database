@@ -21,7 +21,7 @@ addANewStudent(&profile);
 break;
 
 case 2:
-puts("B");
+displayAllStudents(&profile);
 break;
 
 case 3:
@@ -37,7 +37,7 @@ puts("E");
 break;
 
 case 6:
-puts("F");
+saveAndExit(&profile);
 return 0;
 
 default:
