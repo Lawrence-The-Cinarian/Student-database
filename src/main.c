@@ -28,16 +28,14 @@ int main(void)
             break;
             
             case 4:
+            updateStudent(&student);
             break;
             
             case 5:
-            break;
-            
-            case 6:
             saveToFile(&student);
             break;
             
-            case 7:
+            case 6:
             deleteFile();
             break;
             

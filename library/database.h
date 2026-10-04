@@ -18,6 +18,7 @@ void print();
 int addStudents(Register *replace);
 int viewAllStudents(Register *replace);
 int searchStudent(Register *replace);
+int updateStudent(Register *replace);
 int saveToFile(Register *replace);
 int deleteFile();
 
