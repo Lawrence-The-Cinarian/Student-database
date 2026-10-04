@@ -1,0 +1,8 @@
+Name: Lawrence
+ID: 20241420553
+Score: 34
+
+Name: Baterala
+ID: 20251520053
+Score: 56
+
