@@ -24,6 +24,7 @@ int main(void)
             break;
             
             case 3:
+            searchStudent(&student);
             break;
             
             case 4:
@@ -37,7 +38,7 @@ int main(void)
             break;
             
             case 7:
-            deleteFile(&student);
+            deleteFile();
             break;
             
             case 0:

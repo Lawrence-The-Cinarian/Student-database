@@ -1,8 +1,10 @@
 #ifndef DATABASE_H
 #define DATABASE_H
 
-#include <stdio.h>
 #include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 typedef struct
@@ -15,7 +17,8 @@ typedef struct
 void print();
 int addStudents(Register *replace);
 int viewAllStudents(Register *replace);
+int searchStudent(Register *replace);
 int saveToFile(Register *replace);
-int deleteFile(Register *replace);
+int deleteFile();
 
 #endif
