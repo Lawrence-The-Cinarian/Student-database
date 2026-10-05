@@ -11,7 +11,7 @@ typedef struct
 {
     char name[50];
     char id[20];
-    int score;
+    double score;
 } Register;
 
 void print();

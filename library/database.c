@@ -33,7 +33,7 @@ int addStudents(Register *replace) //Number 1;
         printf("Enter student ID: ");
         scanf("%19s", replace[i].id);
         printf("Enter score: ");
-        scanf("%d", &replace[i].score);
+        scanf("%lf", &replace[i].score);
         puts("");
     }
     return count;
@@ -51,9 +51,9 @@ int viewAllStudents(Register *replace) //Number 2;
         puts("Error encountered while viewing contents from the file ❌");
         return 1;
     }
-    while(fscanf(file, "%49s %19s %d\n", replace[b].name, replace[b].id, &replace[b].score) == 3)
+    while(fscanf(file, "%49s %19s %lf\n", replace[b].name, replace[b].id, &replace[b].score) == 3)
     {
-        printf("Name: %s\nID: %s\nScore: %d\n\n", replace[b].name, replace[b].id, replace[b].score);
+        printf("Name: %s\nID: %s\nScore: %.2f\n\n", replace[b].name, replace[b].id, replace[b].score);
     }
     fclose(file);
     return 0;
@@ -75,11 +75,11 @@ int searchStudent(Register *replace)
     
     printf("Enter name of student: ");
     scanf("%49s", target);
-    while(fscanf(file, "%49s %19s %d\n", replace[b].name, replace[b].id, &replace[b].score) == 3)
+    while(fscanf(file, "%49s %19s %lf\n", replace[b].name, replace[b].id, &replace[b].score) == 3)
     {
         if(strcmp(replace[b].name, target) == 0)
         {
-             printf("Name: %s\nID: %s\nScore: %d\n\n", replace[b].name, replace[b].id, replace[b].score);
+             printf("Name: %s\nID: %s\nScore: %.2f\n\n", replace[b].name, replace[b].id, replace[b].score);
              return 1;
         } 
     }      
@@ -103,7 +103,7 @@ int updateStudent(Register *replace)
     if(file == NULL) { puts("Error opening file"); return 1; }
 
     
-    while(fscanf(file, "%49s %19s %d", replace[total].name, replace[total].id, &replace[total].score) == 3)
+    while(fscanf(file, "%49s %19s %lf", replace[total].name, replace[total].id, &replace[total].score) == 3)
         total++;
     fclose(file);
 
@@ -114,10 +114,10 @@ int updateStudent(Register *replace)
     {
         if(strcmp(replace[b].name, target) == 0)
         {
-            printf("Current -> Name: %s | ID: %s | Score: %d\n\n", replace[b].name, replace[b].id, replace[b].score);
+            printf("Current -> Name: %s | ID: %s | Score: %.2f\n\n", replace[b].name, replace[b].id, replace[b].score);
             printf("New name: "); scanf("%49s", replace[b].name);
             printf("New ID: "); scanf("%19s", replace[b].id);
-            printf("New score: "); scanf("%d", &replace[b].score);
+            printf("New score: "); scanf("%lf", &replace[b].score);
             found = 1;
             break;
         }
@@ -128,7 +128,7 @@ int updateStudent(Register *replace)
     file = fopen("src/student_data.txt", "w");
     if(file == NULL) { puts("Error saving update"); return 1; }
     for(b = 0; b < total; b++)
-        fprintf(file, "%s %s %d\n", replace[b].name, replace[b].id, replace[b].score);
+        fprintf(file, "%s %s %.2f\n", replace[b].name, replace[b].id, replace[b].score);
     fclose(file);
     puts("Student updated successfully ✅");
     return 0;
@@ -147,7 +147,7 @@ int saveToFile(Register *replace) //Number 6
     }
     for(int a = 0; a < count; a++)
     {
-        fprintf(file, "%s %s %d\n", replace[a].name, replace[a].id, replace[a].score);
+        fprintf(file, "%s %s %.2f\n", replace[a].name, replace[a].id, replace[a].score);
     }
     fclose(file);
     puts("File successfully saved ✅");
