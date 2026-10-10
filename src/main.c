@@ -1,27 +1,31 @@
+#include "../include/database.h"
+#include "../include/flush.h"
 #include <stdio.h>
 #include <stdbool.h>
-#include "../library/database.h"
+
+
 
 int main(void)
 {
-Profile profile;
+Profile profile = {0};
 int option = 0;
 char sym = '\0';
-/*---------------------------------------------------------------*/
+
 do
 {
 print();
 printf("Enter your choice (1-6): ");
 scanf("%d", &option);
-(void)getchar();
+flush();
+
 switch(option)
 {
 case 1:
-addANewStudent(&profile);
+add_a_new_student(&profile);
 break;
 
 case 2:
-puts("B");
+display_all_students(&profile);
 break;
 
 case 3:
@@ -45,6 +49,7 @@ puts("Invalid option");
 }
 printf("Would you like to continue? Y[es] or N[o]: ");
 scanf(" %c", &sym);
+flush();
 if(!(sym == 'Y' || sym == 'y'))
 {
 break;
